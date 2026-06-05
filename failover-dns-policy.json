@@ -1,0 +1,20 @@
+{
+  "RoutingControl": {
+    "Name": "saphira-global-ingress-control",
+    "SelectedRegions": ["us-east-1", "us-west-2"],
+    "HealthCheckConfig": {
+      "Type": "HTTPS",
+      "ResourcePath": "/healthz",
+      "FullyQualifiedDomainName": "novaumbrella.com",
+      "RequestInterval": 10,
+      "FailureThreshold": 2,
+      "Inverted": false
+    },
+    "FailoverPolicy": {
+      "PrimaryRegion": "us-east-1",
+      "BackupRegion": "us-west-2",
+      "FailoverAction": "AUTOMATIC_ANYCAST_REDUX",
+      "PropagationDelaySeconds": 5
+    }
+  }
+}

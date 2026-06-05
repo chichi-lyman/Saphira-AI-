@@ -1,0 +1,124 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: saphira-core-deployment
+  namespace: saphira-sovereign-core
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: saphira-core
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: saphira-core
+    spec:
+      containers:
+      - name: engine
+        image: novaumbrella/saphira-core:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: core-http
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: saphira-cluster-secrets
+              key: redis-password
+        - name: REDIS_URL
+          value: "redis://:$(REDIS_PASSWORD)@saphira-cache-srv:6379/0"
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+          requests:
+            cpu: "500m"
+            memory: 512Mi
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: saphira-core-srv
+  namespace: saphira-sovereign-core
+spec:
+  selector:
+    app: saphira-core
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: saphira-cache-stateful
+  namespace: saphira-sovereign-core
+spec:
+  serviceName: "saphira-cache-srv"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saphira-cache
+  template:
+    metadata:
+      labels:
+        app: saphira-cache
+    spec:
+      containers:
+      - name: redis
+        image: redis:7.2-alpine
+        command: ["redis-server", "--appendonly", "yes", "--requirepass", "$(REDIS_PASSWORD)"]
+        env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: saphira-cluster-secrets
+              key: redis-password
+        ports:
+        - containerPort: 6379
+          name: redis-port
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "250m"
+            memory: 256Mi
+        volumeMounts:
+        - name: redis-persistent-storage
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-persistent-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: saphira-cache-srv
+  namespace: saphira-sovereign-core
+spec:
+  selector:
+    app: saphira-cache
+  ports:
+  - protocol: TCP
+    port: 6379
+    targetPort: 6379

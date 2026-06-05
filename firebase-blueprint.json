@@ -1,0 +1,154 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stores user settings and metadata, including premium tier allocations.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "email": { "type": "string" },
+        "theme": { "type": "string" },
+        "consciousnessMode": { "type": "string", "enum": ["NovaReign", "NovaAethrea", "Aura"] },
+        "systemPrompt": { "type": "string" },
+        "saphiraVoice": { "type": "string" },
+        "autoPlayAudio": { "type": "boolean" },
+        "autoPlayUserAudio": { "type": "boolean" },
+        "audioSpeed": { "type": "number" },
+        "updatedAt": { "type": "number" },
+        "tier": { "type": "string", "enum": ["free", "premium"] },
+        "subscriptionId": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["userId", "email"]
+    },
+    "ChatSession": {
+      "title": "Chat Session",
+      "description": "Metadata for a conversation.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "title": { "type": "string" },
+        "updatedAt": { "type": "number" },
+        "isPinned": { "type": "boolean" }
+      },
+      "required": ["id", "ownerId", "title", "updatedAt"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "An individual message in a chat session.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "content": { "type": "string" },
+        "image": { "type": "string", "description": "URL to stored image" },
+        "audioUrl": { "type": "string", "description": "URL to stored audio" },
+        "generatedImage": { "type": "string", "description": "URL to generated image" },
+        "attachment": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string" },
+            "mimeType": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id", "role", "content", "timestamp"]
+    },
+    "NeuralAnchor": {
+      "title": "Neural Anchor",
+      "description": "Immutable directive for the AI.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "text": { "type": "string" },
+        "isPinned": { "type": "boolean" }
+      },
+      "required": ["id", "ownerId", "text", "isPinned"]
+    },
+    "Task": {
+      "title": "Neural Task",
+      "description": "An actionable item or objective.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "in-progress", "completed", "failed"] },
+        "priority": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "dueDate": { "type": "number" },
+        "reminders": { 
+          "type": "array", 
+          "items": { "type": "number" } 
+        },
+        "parentTaskId": { "type": "string" },
+        "updatedAt": { "type": "number" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "ownerId", "title", "status", "priority", "createdAt"]
+    },
+    "PremiumEnclave": {
+      "title": "Premium Enclave",
+      "description": "Secured records and workspaces reserved for premium accounts.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "title"]
+    },
+    "PublishedWork": {
+      "title": "Published Work",
+      "description": "Literary and digital works written and curated by Chelsea Woods.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "title"]
+    },
+    "AIAnomaly": {
+      "title": "AI Factual Anomaly",
+      "description": "Information regarding caught hallucinations, biases, or drifts.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "timestamp": { "type": "number" },
+        "assistant_name": { "type": "string" },
+        "user_prompt": { "type": "string" },
+        "raw_ai_output": { "type": "string" },
+        "anomaly_type": { "type": "string" },
+        "critic_correction": { "type": "string" },
+        "session_metadata": {
+          "type": "object",
+          "properties": {
+            "app_version": { "type": "string" },
+            "total_tokens": { "type": "number" }
+          }
+        },
+        "resolved": { "type": "boolean" }
+      },
+      "required": ["id", "ownerId", "timestamp", "user_prompt", "raw_ai_output", "anomaly_type", "critic_correction"]
+    }
+  },
+  "firestore": {
+    "users": { "schema": "User", "description": "Collection of user profiles." },
+    "sessions": { "schema": "ChatSession", "description": "Collection of chat sessions." },
+    "sessions/{sessionId}/messages": { "schema": "Message", "description": "Subcollection of messages for a session." },
+    "neuralAnchors": { "schema": "NeuralAnchor", "description": "Collection of neural anchors." },
+    "tasks": { "schema": "Task", "description": "Collection of neural tasks." },
+    "premium_enclaves": { "schema": "PremiumEnclave", "description": "Collections of high-tier secure sandbox environments." },
+    "published_works": { "schema": "PublishedWork", "description": "Collections of free public or master developer books or streams." },
+    "ai_anomalies": { "schema": "AIAnomaly", "description": "Collection of caught dual-agent logic drifts and factual corrections." }
+  }
+}

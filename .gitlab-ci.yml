@@ -1,0 +1,54 @@
+stages:
+  - forensic-scan    # Security Audit (Aura/Agent 2)
+  - build-logic      # Python Agent Zero Environment
+  - build-frontend   # Flutter Android Utility
+  - deploy           # Containerized Sovereign Execution
+
+variables:
+  DOCKER_DRIVER: overlay2
+  FLUTTER_VERSION: "stable"
+
+# STAGE 1: Forensic Scanning (Aura Protocol)
+forensic_audit:
+  stage: forensic-scan
+  script:
+    - echo "Initializing Aura Threat Detection..."
+    - # Active scan for PII leaks and exploit mitigation
+    - python3 ./scripts/aura_scan.py --depth=high
+  only:
+    - main
+    - develop
+
+# STAGE 2: Build Logic (Agent Zero Hand)
+build_agent_zero:
+  stage: build-logic
+  image: python:3.10-slim
+  script:
+    - pip install -r requirements.txt
+    - echo "Compiling Recursive Tooling for Agent Zero..."
+    - python3 -m compileall ./core/logic
+  artifacts:
+    paths:
+      - core/logic/
+
+# STAGE 3: Build Frontend (Saphira Interface)
+build_saphira_flutter:
+  stage: build-frontend
+  image: mobiledevops/flutter-sdk-image:${FLUTTER_VERSION}
+  script:
+    - flutter pub get
+    - flutter build apk --release --dart-define=ISOLATE_PARTITION=true
+  artifacts:
+    paths:
+      - build/app/outputs/flutter-apk/app-release.apk
+
+# STAGE 4: Sovereign Deployment (Docker)
+deploy_to_sovereign_node:
+  stage: deploy
+  script:
+    - docker build -t nova-umbrella-node .
+    - docker stop active-node || true
+    - docker run -d --name active-node nova-umbrella-node
+  environment:
+    name: production
+  when: manual # Requires manual trigger for Sovereign Sovereignty

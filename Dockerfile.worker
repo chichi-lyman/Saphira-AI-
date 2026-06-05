@@ -1,0 +1,25 @@
+FROM python:3.11-slim-bookworm
+# Establish strict user system boundaries
+RUN groupadd -g 2000 saphiracell && \
+    useradd -u 2000 -g saphiracell -m -s /sbin/nologin saphiracell
+# Purge breakout exploit vectors while keeping necessary optimization primitives
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libcap2-bin && \
+    rm -rf /bin/nc /bin/netstat /usr/bin/curl /usr/bin/wget /usr/bin/apt* /var/lib/apt/lists/*
+# Establish caching and runtime environments
+WORKDIR /app
+# Enable bytecode generation and force writing to a centralized, fast-disk cache path
+ENV PYTHONDONTWRITEBYTECODE=0
+ENV PYTHONPYCACHEPREFIX=/app/.cache/pycache
+ENV PYTHONUNBUFFERED=1
+
+COPY --chown=saphiracell:saphiracell runtime_executor.py /app/runtime_executor.py
+# Create cache directory and restrict file access controls
+RUN mkdir -p /app/.cache/pycache && \
+    chown -R saphiracell:saphiracell /app/.cache && \
+    chmod -R 700 /app/.cache
+
+# Strip remaining capabilities from the system binary tree
+RUN setcap -r /usr/local/bin/python3.11 || true
+USER saphiracell
+ENTRYPOINT ["python3", "/app/runtime_executor.py"]

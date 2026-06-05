@@ -1,0 +1,110 @@
+name: Saphira Sovereign Engine Continuous Deployment Pipeline
+on:
+  push:
+    branches: [ "main", "release/*" ]
+  pull_request:
+    branches: [ "main" ]
+env:
+  REGISTRY: ghcr.io
+  OWNER: novaumbrella
+  WORKER_IMAGE_NAME: saphira-runtime-worker
+  CORE_IMAGE_NAME: saphira-core-engine
+jobs:
+  audit_and_verify:
+    name: Code Audit and Forensic Quality Gates
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Source Tree
+      uses: actions/checkout@v4
+
+    - name: Set up Python Environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Linting & Security Verification Tooling
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 bandit black
+    - name: Enforce Strict Code Formatting Check (Black)
+      run: black --check .
+
+    - name: Static Application Security Testing (Bandit)
+      run: bandit -r ./ -ll -ii
+
+  build_and_publish:
+    name: Build Secure Images and Publish to Registry
+    needs: audit_and_verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    if: github.event_name == 'push'
+
+    steps:
+    - name: Checkout Source Tree
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Authenticate Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Gather Image Metadata (Tags, Labels) - Sandbox Worker
+      id: meta_worker
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.WORKER_IMAGE_NAME }}
+        tags: |
+          type=sha,format=long
+          type=ref,event=branch
+          latest
+    - name: Build and Push Immutable Worker Sandbox Container
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile.worker
+        push: true
+        tags: ${{ steps.meta_worker.outputs.tags }}
+        labels: ${{ steps.meta_worker.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    - name: Container Image Vulnerability Scanning (Trivy Audit)
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.WORKER_IMAGE_NAME }}:latest
+        format: 'table'
+        exit-code: '1' # Abort deployment pipeline if critical vulnerabilities are discovered
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
+
+  cluster_rollout:
+    name: Continuous Cluster Rollout Execution
+    needs: build_and_publish
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Configuration Manifests
+      uses: actions/checkout@v4
+
+    - name: Configure Kubernetes Cluster Context Authenticator
+      uses: azure/k8s-set-context@v3
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.NOVA_KUBECONFIG }}
+
+    - name: Apply Base Core Infrastructure, Service Elements, and Routing Topologies
+      run: |
+        kubectl apply -f k8s/saphira-core-infra.yaml
+        kubectl apply -f k8s/saphira-deployments.yaml
+        kubectl apply -f k8s/saphira-ingress.yaml
+    - name: Execute Controlled Rolling Restart Strategy Across Core Pod Entities
+      run: |
+        kubectl rollout restart deployment/saphira-core-deployment -n saphira-sovereign-core
+        kubectl rollout status deployment/saphira-core-deployment -n saphira-sovereign-core --timeout=300s

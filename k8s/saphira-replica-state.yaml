@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: saphira-cache-replica-stateful
+  namespace: saphira-sovereign-core
+spec:
+  serviceName: "saphira-cache-replica-srv"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saphira-cache-replica
+  template:
+    metadata:
+      labels:
+        app: saphira-cache-replica
+    spec:
+      containers:
+      - name: redis-replica
+        image: redis:7.2-alpine
+        # Command binds this instance to stream updates from the Primary US-East cluster endpoint
+        command: [
+          "redis-server", 
+          "--appendonly", "yes", 
+          "--requirepass", "$(LOCAL_REPLICA_PASSWORD)",
+          "--replicaof", "primary-redis.us-east-1.novaumbrella.internal", "6379",
+          "--masterauth", "$(PRIMARY_MASTER_PASSWORD)"
+        ]
+        env:
+        - name: LOCAL_REPLICA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: saphira-cluster-secrets
+              key: redis-password
+        - name: PRIMARY_MASTER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: saphira-cross-region-secrets
+              key: primary-master-password
+        ports:
+        - containerPort: 6379
+          name: redis-port
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi

@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Tenant {
+  tenant_id    String             @id @default(uuid()) @db.Uuid
+  company_name String             @db.VarChar(255)
+  created_at   DateTime           @default(now()) @db.Timestamptz()
+  sessions     UserSession[]
+  documents    CorporateDocument[]
+  audit_logs   SaphiraAuditLog[]
+
+  @@map("tenants")
+}
+
+model UserSession {
+  session_id    String   @id @default(uuid()) @db.Uuid
+  tenant_id     String   @db.Uuid
+  user_email    String   @db.VarChar(255)
+  session_token String   @unique @db.VarChar(512)
+  expires_at    DateTime @db.Timestamptz()
+  created_at    DateTime @default(now()) @db.Timestamptz()
+  tenant        Tenant   @relation(fields: [tenant_id], references: [tenant_id], onDelete: Cascade)
+
+  @@index([session_token], map: "idx_sessions_token")
+  @@map("user_sessions")
+}
+
+model CorporateDocument {
+  document_id String            @id @default(uuid()) @db.Uuid
+  tenant_id   String            @db.Uuid
+  file_name   String            @db.VarChar(255)
+  raw_text    String            @db.Text
+  uploaded_by String            @db.VarChar(255)
+  created_at  DateTime          @default(now()) @db.Timestamptz()
+  tenant      Tenant            @relation(fields: [tenant_id], references: [tenant_id], onDelete: Cascade)
+  audit_logs  SaphiraAuditLog[]
+
+  @@index([tenant_id], map: "idx_docs_tenant")
+  @@map("corporate_documents")
+}
+
+model SaphiraAuditLog {
+  log_id               String            @id @default(uuid()) @db.Uuid
+  tenant_id            String            @db.Uuid
+  document_id          String            @db.Uuid
+  risk_level           String            @db.VarChar(50)
+  finding_summary      String            @db.Text
+  flagged_text_passage String?           @db.Text
+  created_at           DateTime          @default(now()) @db.Timestamptz()
+  tenant               Tenant            @relation(fields: [tenant_id], references: [tenant_id], onDelete: Cascade)
+  document             CorporateDocument @relation(fields: [document_id], references: [document_id], onDelete: Cascade)
+
+  @@index([tenant_id], map: "idx_logs_tenant")
+  @@map("saphira_audit_logs")
+}

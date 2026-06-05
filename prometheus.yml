@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 5s # High-density profiling target
+  evaluation_interval: 5s
+rule_files:
+  - "alert_rules.yml"
+scrape_configs:
+  - job_name: 'saphira-core-telemetry'
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_label_app]
+        action: keep
+        regex: saphira-core
+      - source_labels: [__meta_kubernetes_pod_container_port_number]
+        action: keep
+        regex: "9090"

@@ -1,0 +1,1035 @@
+[TAILING] Tailing last 100 lines for [all] processes (change the value with --lines option)
+/root/.pm2/pm2.log last 100 lines:
+PM2        | 2026-05-28T06:46:16: PM2 log: ===============================================================================
+PM2        | 2026-05-28T06:46:16: PM2 log: --- New PM2 Daemon started ----------------------------------------------------
+PM2        | 2026-05-28T06:46:16: PM2 log: Time                 : Thu May 28 2026 06:46:16 GMT+0000 (Coordinated Universal Time)
+PM2        | 2026-05-28T06:46:16: PM2 log: PM2 version          : 7.0.1
+PM2        | 2026-05-28T06:46:16: PM2 log: Node.js version      : 22.22.2
+PM2        | 2026-05-28T06:46:16: PM2 log: Current arch         : x64
+PM2        | 2026-05-28T06:46:16: PM2 log: PM2 home             : /root/.pm2
+PM2        | 2026-05-28T06:46:16: PM2 log: PM2 PID file         : /root/.pm2/pm2.pid
+PM2        | 2026-05-28T06:46:16: PM2 log: RPC socket file      : /root/.pm2/rpc.sock
+PM2        | 2026-05-28T06:46:16: PM2 log: BUS socket file      : /root/.pm2/pub.sock
+PM2        | 2026-05-28T06:46:16: PM2 log: Application log path : /root/.pm2/logs
+PM2        | 2026-05-28T06:46:16: PM2 log: Worker Interval      : 30000
+PM2        | 2026-05-28T06:46:16: PM2 log: Process dump file    : /root/.pm2/dump.pm2
+PM2        | 2026-05-28T06:46:16: PM2 log: Concurrent actions   : 2
+PM2        | 2026-05-28T06:46:16: PM2 log: SIGTERM timeout      : 1600
+PM2        | 2026-05-28T06:46:16: PM2 log: Runtime Binary       : /usr/local/bin/node
+PM2        | 2026-05-28T06:46:16: PM2 log: ===============================================================================
+PM2        | 2026-05-28T06:46:16: PM2 log: App [server:0] starting in -fork mode-
+PM2        | 2026-05-28T06:46:16: PM2 log: App [server:0] online
+PM2        | 2026-05-28T06:46:18: PM2 log: App [server:0] exited with code [1] via signal [SIGINT]
+PM2        | 2026-05-28T06:46:18: PM2 log: App [server:0] starting in -fork mode-
+PM2        | 2026-05-28T06:46:18: PM2 log: App [server:0] online
+PM2        | 2026-05-28T06:46:19: PM2 log: App [server:0] exited with code [1] via signal [SIGINT]
+PM2        | 2026-05-28T06:46:19: PM2 log: App [server:0] starting in -fork mode-
+PM2        | 2026-05-28T06:46:19: PM2 log: App [server:0] online
+PM2        | 2026-05-28T06:46:21: PM2 log: App [server:0] exited with code [1] via signal [SIGINT]
+PM2        | 2026-05-28T06:46:21: PM2 log: App [server:0] starting in -fork mode-
+PM2        | 2026-05-28T06:46:21: PM2 log: App [server:0] online
+PM2        | 2026-05-28T06:46:23: PM2 log: App [server:0] exited with code [1] via signal [SIGINT]
+PM2        | 2026-05-28T06:46:23: PM2 log: App [server:0] starting in -fork mode-
+PM2        | 2026-05-28T06:46:23: PM2 log: App [server:0] online
+
+/root/.pm2/logs/server-error.log last 100 lines:
+0|server   | (node:1023) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server   | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server   | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server   |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server   |     at listenInCluster (node:net:1997:12)
+0|server   |     at node:net:2206:7
+0|server   |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server   |   code: 'EADDRINUSE',
+0|server   |   errno: -98,
+0|server   |   syscall: 'listen',
+0|server   |   address: '0.0.0.0',
+0|server   |   port: 3000
+0|server   | }
+0|server   | (node:1040) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server   | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server   | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server   |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server   |     at listenInCluster (node:net:1997:12)
+0|server   |     at node:net:2206:7
+0|server   |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server   |   code: 'EADDRINUSE',
+0|server   |   errno: -98,
+0|server   |   syscall: 'listen',
+0|server   |   address: '0.0.0.0',
+0|server   |   port: 3000
+0|server   | }
+0|server   | (node:1052) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server   | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server   | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server   |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server   |     at listenInCluster (node:net:1997:12)
+0|server   |     at node:net:2206:7
+0|server   |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server   |   code: 'EADDRINUSE',
+0|server   |   errno: -98,
+0|server   |   syscall: 'listen',
+0|server   |   address: '0.0.0.0',
+0|server   |   port: 3000
+0|server   | }
+0|server   | (node:1064) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server   | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server   | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server   |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server   |     at listenInCluster (node:net:1997:12)
+0|server   |     at node:net:2206:7
+0|server   |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server   |   code: 'EADDRINUSE',
+0|server   |   errno: -98,
+0|server   |   syscall: 'listen',
+0|server   |   address: '0.0.0.0',
+0|server   |   port: 3000
+0|server   | }
+
+/root/.pm2/logs/server-out.log last 100 lines:
+0|server   | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server   | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server   | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server   | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server   | No REDIS_URL found. Using in-memory MockQueue for development.
+
+0|server  | (node:1088) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1113) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1125) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1137) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1149) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1161) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1173) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1185) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1197) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1209) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1221) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1233) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1245) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1257) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1269) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1281) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1293) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1305) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1317) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1329) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1341) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1353) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1365) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1377) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1389) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1401) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1413) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1425) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1437) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1449) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1461) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1473) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1485) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1497) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1509) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1521) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1533) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1545) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1559) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1571) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1583) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1595) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1607) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1619) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1631) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1656) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1677) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1689) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1701) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1713) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1725) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+PM2       | Stopping app:server id:0
+PM2       | App [server:0] exited with code [0] via signal [SIGINT]
+PM2       | pid=1750 msg=process tree killed (1 pids)
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1814) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1827) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1839) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.
+0|server  | (node:1851) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+0|server  | (Use `node --trace-deprecation ...` to show where the warning was created)
+0|server  | Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+0|server  |     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+0|server  |     at listenInCluster (node:net:1997:12)
+0|server  |     at node:net:2206:7
+0|server  |     at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+0|server  |   code: 'EADDRINUSE',
+0|server  |   errno: -98,
+0|server  |   syscall: 'listen',
+0|server  |   address: '0.0.0.0',
+0|server  |   port: 3000
+0|server  | }
+PM2       | App [server:0] exited with code [1] via signal [SIGINT]
+PM2       | App [server:0] starting in -fork mode-
+PM2       | App [server:0] online
+0|server  | No REDIS_URL found. Using in-memory MockQueue for development.

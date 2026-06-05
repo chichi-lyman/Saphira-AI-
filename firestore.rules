@@ -1,0 +1,205 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    // --- Users ---
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUser(incoming()) && (
+        !incoming().keys().hasAny(['tier', 'subscriptionId', 'status']) ||
+        (incoming().get('tier', 'free') == 'free' && incoming().get('status', 'inactive') == 'inactive' && incoming().get('subscriptionId', '') == '')
+      );
+      allow update: if isOwner(userId) && isValidUser(incoming()) && (
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'theme', 'consciousnessMode', 'systemPrompt', 'saphiraVoice', 
+          'autoPlayAudio', 'autoPlayUserAudio', 'audioSpeed', 'audioVolume', 'isVoiceCodingMode', 'recognitionLang', 'updatedAt'
+        ])
+      );
+
+      function isValidUser(data) {
+        return data.keys().hasAll(['userId', 'email'])
+          && data.userId == request.auth.uid
+          && data.email is string && data.email.size() < 256
+          && (data.get('theme', 'light') in ['light', 'dark'])
+          && (data.get('consciousnessMode', 'NovaReign') in ['NovaReign', 'NovaAethrea', 'Aura'])
+          && (data.get('systemPrompt', '') is string && data.get('systemPrompt', '').size() < 10000)
+          && (data.get('saphiraVoice', 'Aoede') is string)
+          && (data.get('autoPlayAudio', true) is bool)
+          && (data.get('autoPlayUserAudio', false) is bool)
+          && (data.get('audioSpeed', 1) is number)
+          && (data.get('audioVolume', 1) is number)
+          && (data.get('isVoiceCodingMode', false) is bool)
+          && (data.get('recognitionLang', 'en-US') is string)
+          && (data.get('tier', 'free') in ['free', 'premium'])
+          && (data.get('subscriptionId', '') is string)
+          && (data.get('status', 'inactive') is string);
+      }
+    }
+
+    // --- Sessions ---
+    match /sessions/{sessionId} {
+      allow list: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+      allow get: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+      allow create: if isSignedIn() && incoming().ownerId == request.auth.uid && isValidSession(incoming());
+      allow update: if isSignedIn() && existing().ownerId == request.auth.uid 
+        && incoming().ownerId == existing().ownerId
+        && isValidSession(incoming())
+        && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'updatedAt', 'isPinned']);
+      allow delete: if isSignedIn() && existing().ownerId == request.auth.uid;
+
+      function isValidSession(data) {
+        return data.keys().hasAll(['id', 'ownerId', 'title', 'updatedAt'])
+          && isValidId(data.id)
+          && data.ownerId == request.auth.uid
+          && data.title is string && data.title.size() < 512
+          && data.updatedAt is number;
+      }
+
+      // --- Messages ---
+      match /messages/{messageId} {
+        allow list: if isSignedIn() && get(/databases/$(database)/documents/sessions/$(sessionId)).data.ownerId == request.auth.uid;
+        allow get: if isSignedIn() && get(/databases/$(database)/documents/sessions/$(sessionId)).data.ownerId == request.auth.uid;
+        allow create: if isSignedIn() 
+          && get(/databases/$(database)/documents/sessions/$(sessionId)).data.ownerId == request.auth.uid
+          && isValidMessage(incoming());
+        allow update: if false; // Messages are usually immutable in this app
+        allow delete: if isSignedIn() && get(/databases/$(database)/documents/sessions/$(sessionId)).data.ownerId == request.auth.uid;
+
+        function isValidMessage(data) {
+          return data.keys().hasAll(['id', 'role', 'content', 'timestamp'])
+            && isValidId(data.id)
+            && data.role in ['user', 'model']
+            && data.content is string && data.content.size() < 10000
+            && data.timestamp is number
+            && (data.get('image', '') is string)
+            && (data.get('audioUrl', '') is string)
+            && (data.get('generatedImage', '') is string);
+        }
+      }
+    }
+
+    // --- Neural Anchors ---
+    match /neuralAnchors/{anchorId} {
+      allow list: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+      allow get: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+      allow create: if isSignedIn() && incoming().ownerId == request.auth.uid && isValidAnchor(incoming());
+      allow update: if isSignedIn() && existing().ownerId == request.auth.uid 
+        && incoming().ownerId == existing().ownerId
+        && isValidAnchor(incoming())
+        && incoming().diff(existing()).affectedKeys().hasOnly(['text', 'isPinned']);
+      allow delete: if isSignedIn() && existing().ownerId == request.auth.uid;
+
+      function isValidAnchor(data) {
+        return data.keys().hasAll(['id', 'ownerId', 'text', 'isPinned'])
+          && isValidId(data.id)
+          && data.ownerId == request.auth.uid
+          && data.text is string && data.text.size() < 1024
+          && data.isPinned is bool;
+      }
+    }
+
+    // --- Neural Tasks ---
+    match /tasks/{taskId} {
+      allow list: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+      allow get: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+      allow create: if isSignedIn() && incoming().ownerId == request.auth.uid && isValidTask(incoming());
+      allow update: if isSignedIn() && existing().ownerId == request.auth.uid 
+        && incoming().ownerId == existing().ownerId
+        && isValidTask(incoming())
+        && (
+          incoming().diff(existing()).affectedKeys().hasOnly([
+            'title', 'description', 'status', 'priority', 'dueDate', 'reminders', 'parentTaskId', 'updatedAt'
+          ])
+        );
+      allow delete: if isSignedIn() && existing().ownerId == request.auth.uid;
+
+      function isValidTask(data) {
+        return data.keys().hasAll(['id', 'ownerId', 'title', 'status', 'priority', 'createdAt'])
+          && isValidId(data.id)
+          && data.ownerId == request.auth.uid
+          && data.title is string && data.title.size() < 512
+          && data.status in ['pending', 'in-progress', 'completed', 'failed']
+          && data.priority in ['low', 'medium', 'high', 'critical']
+          && (data.get('description', '') is string && data.get('description', '').size() < 5000)
+          && (data.get('dueDate', 0) is number)
+          && (data.get('reminders', []) is list)
+          && (data.get('parentTaskId', '') is string)
+          && data.createdAt is number;
+      }
+    }
+
+    // --- Sovereign Tasks (Alternative ledger) ---
+    match /sovereign_tasks/{taskId} {
+      allow list: if isSignedIn() && resource.data.uid == request.auth.uid;
+      allow get: if isSignedIn() && resource.data.uid == request.auth.uid;
+      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+      allow update: if isSignedIn() && existing().uid == request.auth.uid && request.resource.data.uid == request.auth.uid;
+      allow delete: if isSignedIn() && existing().uid == request.auth.uid;
+    }
+
+    // --- Premium Enclaves ---
+    match /premium_enclaves/{document} {
+      allow read, write: if isSignedIn() && getUserData().tier == 'premium';
+    }
+
+    // --- Published Works ---
+    match /published_works/{document} {
+      allow read: if true;
+      allow write: if isSignedIn() && request.auth.token.email == 'chelsearager1@gmail.com';
+    }
+
+    // --- AI Anomalies ---
+    match /ai_anomalies/{anomalyId} {
+      allow list: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+      allow get: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+      allow create: if isSignedIn() && incoming().ownerId == request.auth.uid && isValidAnomaly(incoming());
+      allow update: if isSignedIn() && existing().ownerId == request.auth.uid 
+        && incoming().ownerId == existing().ownerId
+        && isValidAnomaly(incoming())
+        && incoming().diff(existing()).affectedKeys().hasOnly(['resolved', 'session_metadata']);
+      allow delete: if isSignedIn() && existing().ownerId == request.auth.uid;
+
+      function isValidAnomaly(data) {
+        return data.keys().hasAll(['id', 'ownerId', 'timestamp', 'user_prompt', 'raw_ai_output', 'anomaly_type', 'critic_correction'])
+          && isValidId(data.id)
+          && data.ownerId == request.auth.uid
+          && data.timestamp is number
+          && (data.get('assistant_name', '') is string)
+          && data.user_prompt is string && data.user_prompt.size() < 10000
+          && data.raw_ai_output is string && data.raw_ai_output.size() < 20000
+          && data.anomaly_type is string && data.anomaly_type.size() < 128
+          && data.critic_correction is string && data.critic_correction.size() < 20000
+          && (data.get('resolved', false) is bool);
+      }
+    }
+  }
+}

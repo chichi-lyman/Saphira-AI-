@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GoogleBot
+Allow: /
+
+# Directed Sitemaps for Oracles
+Sitemap: https://novaumbrella.com/sitemap.xml

@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+torch
+transformers>=4.43.0
+bitsandbytes
+accelerate
+pydantic
+litellm
+docker
+redis

@@ -1,0 +1,54 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "type": "gauge",
+      "title": "Token Bucket Headroom Status",
+      "gridPos": { "h": 6, "w": 8, "x": 0, "y": 0 },
+      "id": 1,
+      "targets": [{ "expr": "saphira_rate_limiter_tokens_available", "refId": "A" }],
+      "fieldConfig": {
+        "defaults": {
+          "min": 0, "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 30 },
+              { "color": "red", "value": 15 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "state-timeline",
+      "title": "Circuit Breaker Trip Matrix",
+      "gridPos": { "h": 6, "w": 8, "x": 8, "y": 0 },
+      "id": 2,
+      "targets": [{ "expr": "saphira_circuit_breaker_tripped", "refId": "A" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Gross Ledger Run Rate ($ USD/hr)",
+      "gridPos": { "h": 6, "w": 8, "x": 16, "y": 0 },
+      "id": 3,
+      "targets": [{ "expr": "rate(saphira_ledger_gross_revenue_settled_cents[1m]) / 100 * 3600", "refId": "A" }]
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["nova-umbrella", "production"],
+  "time": { "from": "now-1h", "to": "now" },
+  "timepicker": {},
+  "timezone": "utc",
+  "title": "Saphira Sovereign AI - Production Telemetry Frame",
+  "version": 1
+}

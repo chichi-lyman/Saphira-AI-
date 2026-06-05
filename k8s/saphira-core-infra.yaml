@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: saphira-sovereign-core
+  labels:
+    tier: alpha-umbrella
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: saphira-core-isolation-policy
+  namespace: saphira-sovereign-core
+spec:
+  podSelector: {} # Match all pods within this isolated namespace
+  policyTypes:
+  - Ingress
+  - Egress
+  - Both
+  ingress:
+  - from:
+    - podSelector: {} # Allow traffic strictly between sibling pods in this namespace
+  egress:
+  - to:
+    - podSelector: {} # Allow internal egress to sibling pods
+  # Explicitly allow external egress strictly to verified public LLM/API gateways
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0

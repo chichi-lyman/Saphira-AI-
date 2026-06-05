@@ -1,0 +1,6 @@
+{
+	"appId": "com.saphira.ai",
+	"appName": "Saphira ASI",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}
