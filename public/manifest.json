@@ -1,6 +1,11 @@
 {
+  "name": "Saphira AI Assistant",
   "short_name": "Saphira",
-  "name": "Saphira: Your AI Liaison",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d11",
+  "theme_color": "#00f2fe",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "saphira_logo_192.png",
@@ -12,9 +17,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  ]
 }

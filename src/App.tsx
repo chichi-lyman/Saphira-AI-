@@ -48,6 +48,7 @@ import { ASIBlueprint } from './components/ASIBlueprint';
 import { GlobalTalentProtocol } from './components/GlobalTalentProtocol';
 import { TaskDependencyVisualizer } from './components/TaskDependencyVisualizer';
 import { SaphiraVoiceOverlay } from './components/SaphiraVoiceOverlay';
+import { SaphiraVoiceHapticEffect } from './components/SaphiraVoiceHapticEffect';
 import { TaskCreationModal } from './components/TaskCreationModal';
 import { GlobalNodeTelemetry } from './components/GlobalNodeTelemetry';
 import { NotificationOverlay, notify } from './components/NotificationOverlay';
@@ -1586,6 +1587,8 @@ export default function App() {
   const wakeWordRecognitionRef = useRef<any>(null);
   const [isWakeWordActive, setIsWakeWordActive] = useState(false);
   const handleSendRef = useRef<((e?: React.FormEvent, overrideText?: string) => Promise<void>) | null>(null);
+  const [voiceHapticTrigger, setVoiceHapticTrigger] = useState(0);
+  const [voiceHapticCommand, setVoiceHapticCommand] = useState("");
 
   // Initialize Speech Recognition
   const parseAndExecuteVoiceCommand = (rawTranscript: string): boolean => {
@@ -1704,6 +1707,8 @@ export default function App() {
         // Check if spoken command matches local triggers
         const wasCommand = parseAndExecuteVoiceCommand(transcript);
         if (wasCommand) {
+          setVoiceHapticTrigger(prev => prev + 1);
+          setVoiceHapticCommand(transcript);
           const userMsgId = Date.now().toString();
           const botMsgId = (Date.now() + 1).toString();
           setMessages(prev => [
@@ -1749,6 +1754,8 @@ export default function App() {
                if (cleanQuery.length > 2) {
                  const wasCommand = parseAndExecuteVoiceCommand(cleanQuery);
                  if (wasCommand) {
+                   setVoiceHapticTrigger(prev => prev + 1);
+                   setVoiceHapticCommand(cleanQuery);
                    const userMsgId = Date.now().toString();
                    const botMsgId = (Date.now() + 1).toString();
                    setMessages(prev => [
@@ -2510,6 +2517,10 @@ export default function App() {
   // Scroll to bottom
   useEffect(() => {
     const timeout = setTimeout(() => {
+      const chatStream = document.getElementById('chatStream');
+      if (chatStream) {
+        chatStream.scrollTop = chatStream.scrollHeight;
+      }
       bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }, 100);
     return () => clearTimeout(timeout);
@@ -3043,6 +3054,11 @@ export default function App() {
         spokenText={isSpeaking ? (messages.find(m => m.id === isSpeaking)?.content || "") : ""}
       />
       
+      <SaphiraVoiceHapticEffect 
+        triggerKey={voiceHapticTrigger}
+        commandText={voiceHapticCommand}
+      />
+      
       <div className="fixed inset-0 pointer-events-none z-0 system-fabric-pulse">
          <div className="quantum-glow"></div>
          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjM2LDcyLDE1MywwLjA1KSIvPjwvc3ZnPg==')] opacity-50"></div>
@@ -3530,7 +3546,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth space-y-6 nice-scrollbar pb-40">
+          <div id="chatStream" className="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth space-y-6 nice-scrollbar pb-40">
               
               <AnimatePresence initial={false}>
                 {messages.length <= 1 ? (
